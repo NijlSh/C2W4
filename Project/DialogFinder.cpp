@@ -4,22 +4,29 @@ void DialogFinder::FindDialogs()
 {
 	std::string tempDialog;
 	bool isDialog = false;
+	bool isIncorrectLine = false;
 	int count = 0;
 
 	for (int i = 1; i < static_cast<int>(text.size()); i++)
 	{
-		if (text[i - 1] == '\n' && text[i] == '–' && text [i + 1] == ' ')
-		{
-			isDialog = true;
-			count++;
+		if (text[i - 1] == '\n' && text[i] == '–' && text[i + 1] == ' ')
+		{	
+			if (!((text[i + 2] == '\n' || text[i + 2] == ' ')))
+			{
+				isDialog = true;
+				count++;
+			}
+			else
+				isIncorrectLine = true;
 		}
 
 		if (isDialog)
 			tempDialog += text[i];
 
-		if (text[i] == '\n' && text[i + 1] != '–')
+		if ((text[i] == '\n' && text[i + 1] != '–') || isIncorrectLine)
 		{
 			isDialog = false;
+			isIncorrectLine = false;
 			if (count > 1) 
 			{
 				count = 0;
