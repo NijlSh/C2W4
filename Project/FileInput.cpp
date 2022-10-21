@@ -41,7 +41,5 @@ std::string FileInput()
 			break;
 		}
 	}
-	//std::cin.clear();
-	//std::cin.ignore();
 	return text;
 }
