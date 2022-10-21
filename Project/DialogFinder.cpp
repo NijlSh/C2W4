@@ -23,7 +23,7 @@ void DialogFinder::FindDialogs()
 		if (isDialog)
 			tempDialog += text[i];
 
-		if (text[i] == '\n' && text[i] != '—' || isIncorrectLine)
+		if ((text[i] == '\n' && text[i] != '—') || isIncorrectLine)
 		{
 			isDialog = false;
 			isIncorrectLine = false;
