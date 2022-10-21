@@ -9,7 +9,7 @@ void DialogFinder::FindDialogs()
 
 	for (int i = 1; i < static_cast<int>(text.size()); i++)
 	{
-		if (text[i - 1] == '\n' && text[i] == '�' && text[i + 1] == ' ')
+		if (text[i - 1] == '\n' && (text[i] == '–' || text[i] == '-' || text[i] == '—') && text[i + 1] == ' ')
 		{	
 			if (!((text[i + 2] == '\n' || text[i + 2] == ' ')))
 			{
@@ -23,7 +23,7 @@ void DialogFinder::FindDialogs()
 		if (isDialog)
 			tempDialog += text[i];
 
-		if ((text[i] == '\n' && text[i + 1] != '�') || isIncorrectLine)
+		if ((text[i] == '\n' && (text[i] != '–' || text[i] != '-' || text[i] != '—')) || isIncorrectLine)
 		{
 			isDialog = false;
 			isIncorrectLine = false;
