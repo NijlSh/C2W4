@@ -4,8 +4,9 @@ int AscUserInputType()
 {
 	int variant;
 	std::cout << "¬ведите 1 дл€ консольного ввода" << std::endl
-		<< "¬ведите 2 дл€ ввода из файла" << std::endl;
-	variant = CheckMenu(2);
+		<< "¬ведите 2 дл€ ввода из файла" << std::endl
+		<< "¬ведите 3 дл€ завершени€ работы программы" << std::endl;
+	variant = CheckMenu(3);
 	return variant;
 }
 

@@ -3,41 +3,36 @@
 void DialogFinder::FindDialogs()
 {
 	std::string tempDialog;
-	bool isDialog = false;
-	bool isIncorrectLine = false;
-	int count = 0;
+	bool is_dialog = false;
+	bool is_incorrectLine = false;
+	unsigned int count = 0;
 
-	for (int i = 1; i < static_cast<int>(text.size()); i++)
+	for (size_t i = 1; i < text.size(); i++)
 	{
-		if (text[i - 1] == '\n' && (text[i] == '—' || text[i] == '–' || text[i] == '-') && text[i + 1] == ' ')
+		if (text[i - 1] == '\n' && text[i] == '�' && text[i + 1] == ' ')
 		{	
-			if (!((text[i + 2] == '\n' || text[i + 2] == ' ')))
+			if (!(text[i + 2] == '\n' || text[i + 2] == ' '))
 			{
-				isDialog = true;
 				count++;
+				is_dialog = true;
 			}
 			else
-				isIncorrectLine = false;
+				is_incorrectLine = true;
 		}
 
-		if (isDialog)
+		if (is_dialog)
 			tempDialog += text[i];
 
-		if ((text[i] == '\n' && text[i + 1] != '—' && text[i + 1] != '–' && text[i + 1] != '-') || !isIncorrectLine)
+		if ((text[i] == '\n' && text[i + 1] != '�') || is_incorrectLine)
 		{
-			isDialog = false;
-			isIncorrectLine = false;
+			is_dialog = false;
+			is_incorrectLine = false;
 			if (count > 1) 
 			{
-				count = 0;
 				dialogs.push_back(tempDialog);
-				tempDialog.clear();
 			}
-			else 
-			{
-				count = 0;
-				tempDialog.clear();
-			}
+			count = 0;
+			tempDialog.clear();
 		}
 	}
 }

@@ -34,6 +34,7 @@ std::string FileInput()
 		try
 		{
 			std::getline(file, buff);
+
 			text += buff + "\n";
 		}
 		catch (const std::exception&)

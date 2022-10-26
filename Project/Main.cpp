@@ -14,7 +14,8 @@
 enum class Type
 {
 	console = 1,
-	file
+	file,
+	end_program
 };
 
 enum class Answer
@@ -48,11 +49,20 @@ int main()
 		case Type::file:
 			text = FileInput();
 			break;
+		case Type::end_program:
+			exit(0);
+		}
+
+		if (text.empty()) 
+		{
+			std::cout << std::endl << "Файл пуст." << std::endl;
+			system("pause");
+			system("cls");
+			continue;
 		}
 		DialogFinder finder(text);
 
 		finder.FindDialogs();
-
 
 		if (static_cast<Answer>(AscInitialDataSaveMenu()) == Answer::Yes)
 			SaveInitialData(text);
