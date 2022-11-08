@@ -17,5 +17,7 @@ enum
 	input = 1
 };
 
+const int restart = 2;
+
 std::string GetFileName(int stream_type);
 
