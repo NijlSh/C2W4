@@ -1,18 +1,18 @@
 #include "GetFileName.h"
 
-std::string FileInput()
+std::string __FileInput()
 {
 	while (true)
 	{
 		std::string file_path;
 
-		std::cout << "Ввод: ";
+		std::cout << "Сохранить из: ";
 		getline(std::cin, file_path);
 
 		if (file_path.find(".txt") >= std::string::npos)
 		{
 			std::cout << "Не текстовый файл. Повторите ввод." << std::endl;
-			return false;
+			continue;
 		}
 
 		if (!std::ifstream(file_path)) {
@@ -38,7 +38,7 @@ std::string FileInput()
 	}
 }
 
-std::string FileOutput()
+std::string __FileOutput()
 {
 	const int get_name = 2;
 
@@ -46,13 +46,13 @@ std::string FileOutput()
 	{
 		std::string file_path;
 
-		std::cout << "Сохранить из: ";
+		std::cout << "Сохранить в: ";
 		getline(std::cin, file_path);
 
-		if (file_path.find(".txt") >= std::string::npos) 
+		if (file_path.find(".txt") >= std::string::npos)
 		{
 			std::cout << "Не текстовый файл. Повторите ввод." << std::endl;
-			return false;
+			continue;
 		}
 
 		if (std::ifstream(file_path))
@@ -94,9 +94,9 @@ std::string GetFileName(int stream_type)
 		switch (stream_type)
 		{
 		case input:
-			return file_path = FileInput();
+			return file_path = __FileInput();
 		case output:
-			return file_path = FileOutput();
+			return file_path = __FileOutput();
 		}
 	}
 }
